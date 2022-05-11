@@ -8,9 +8,10 @@ const ReceiptList = (props) => {
   props = Object.values(props.props);
   console.log(props);
 
-
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
+  let navigate = useNavigate();
+  const routeChange = val => () =>{ 
+    let id_temp = val - 1;
+    localStorage.setItem('id', id_temp.toString());
     let path = `/details`; 
     navigate(path);
   }
@@ -30,7 +31,7 @@ const ReceiptList = (props) => {
               <Card.Text>
               <strong>Date:</strong> {receipt.date}
               </Card.Text>
-              <Button onClick={routeChange}>More Info</Button>
+              <Button onClick={routeChange(receipt.id)}>More Info</Button>
             </Card.Body>
           </Card>
         ))}
